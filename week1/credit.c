@@ -54,18 +54,22 @@ int main(void)
     if((type1 + type2) % 10 != 0)
     {
         printf("INVALID CARD NUMBER\n");
+    }   
+    else if(sec_digit == 43)
+    {  
+        printf("AMEX\n");
     }
-
-    if(first_digit == 3)
+    else if(sec_digit == 73)
     {
-        if(sec_digit == 4)
-        {
-            printf("AMEX\n");
-        }
-
-        if(sec_digit == 7)
-        {
-            printf("AMEX\n");
-        }
+        printf("AMEX\n");
     }
+    else if(first_digit == 4)
+    {
+        printf("VISA\n");
+    }
+    else
+    {
+        printf("MASTERCARD\n");
+    }
+    
 }
