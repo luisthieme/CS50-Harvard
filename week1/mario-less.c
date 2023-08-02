@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 
 int main(void)
 {
@@ -8,7 +9,7 @@ int main(void)
     {
         printf("size: ");
         scanf("%d", &n);
-    } while (!(n > 1 && n < 8));
+    } while (!(n > 1 && n < 8 && !(isdigit(n))));
     
     
     int spaces = n;
