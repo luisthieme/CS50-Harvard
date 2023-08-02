@@ -8,7 +8,7 @@ int main(void)
     {
         printf("size: ");
         scanf("%d", &n);
-    } while (n < 1 || n > 8);
+    } while (!(n > 1 && n < 8));
     
     
     int spaces = n;
