@@ -19,6 +19,7 @@ int main(void)
         printf("Enter Number: ");
         scanf("%s", input);
         cardnumber = atoi(input);
+        printf("%d", cardnumber);
     } while (cardnumber == 0);
 
     for(int i = 0; i < strlen(input); i++)
