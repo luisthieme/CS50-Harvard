@@ -5,11 +5,23 @@
 int main(int argc, char* argv[])
 {
 
+    if(argc < 2 || argc > 2)
+    {
+        printf("Please input exactly one key!\n");
+        return 1;
+    }
     int key = atoi(argv[1]);
+    if(key == 0)
+    {
+        printf("Usage: ./caesar key\n");
+        return 1;
+    }
+
     while(key > 26)
     {
         key -= 26;
     }
+
 
     int ascii;
     char text[50];
@@ -32,12 +44,24 @@ int main(int argc, char* argv[])
             }
             printf("%c", ascii);
         }
+        else if((text[i] != (' ' | '.' | '?' | '!' | '\'')) && (text[i] > 64) && (text[i] < 91))
+        // eig reicht der teil nach den && zeichen aus oder?
+        {
+            ascii = text[i];
+            ascii += key;
+            if(ascii > 90)
+            {
+                ascii -= 26;
+            }
+            printf("%c", ascii);
+        }
         else
         {
             printf("%c", text[i]);
         }
     }
     printf("\n");
+    return 0;
 
     // noch für großbcuhstaben implementieren
 
