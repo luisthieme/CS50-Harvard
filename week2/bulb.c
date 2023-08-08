@@ -3,7 +3,6 @@
 
 int main(void)
 {
-
     char text[50];
     char output[9];
 
