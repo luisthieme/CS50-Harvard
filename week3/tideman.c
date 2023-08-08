@@ -10,6 +10,7 @@ int preferences[MAX][MAX];
 
 // locked[i][j] means i is locked in over j
 bool locked[MAX][MAX];
+int winner;
 
 // Each pair has a winner, loser
 typedef struct
@@ -133,9 +134,21 @@ void add_pairs(void)
     int score = 0;
     for(int i = 0; i < candidate_count; i++)
     {
-        for(int j = 0; j < candidate_count; j++)
+        for(int j = i; j < candidate_count - 1; j++)
         {
-            
+            score = preferences[i][j + 1] - preferences[j + 1][i];
+            if(score > 0)
+            {
+                pairs[pair_count].winner = i; 
+                pairs[pair_count].loser = j;
+                pair_count++;
+            }
+            else if(score < 0)
+            {
+                pairs[pair_count].winner = j;
+                pairs[pair_count].loser = i;
+                pair_count++;
+            }
         }
     }
     return;
@@ -144,20 +157,107 @@ void add_pairs(void)
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
-    // TODO
+    int score = 0;
+    int scores[pair_count];
+    bool sorted = false;
+    int swap_counter;
+
+    for(int i = 0; i < pair_count; i++)
+    {
+        score = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
+        scores[i] = score;
+    }
+
+    while(!sorted)
+    {
+        swap_counter = 0;
+
+        for(int i = 0; i < pair_count - 1; i++)
+        {
+            if(scores[i] < scores[i + 1])
+            {
+                int temp1 = scores[i];
+                int temp2 = scores[i + 1];
+                scores[i] = temp2;
+                scores[i + 1] = temp1;
+                swap_counter++;
+            }
+        } 
+
+        if(swap_counter == 0)
+        {
+            sorted = true;
+        }
+    }
+    
+    for(int i = 0; i < pair_count; i++)
+    {
+        for(int j = i; j < pair_count; j++)
+        {
+            if(scores[i] == preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner])
+            {
+                int temp1 = pairs[j].winner;
+                int temp2 = pairs[j].loser;
+                
+                pairs[j].winner = pairs[i].winner,
+                pairs[j].loser = pairs[i].loser;
+                
+                pairs[i].winner = temp1;
+                pairs[i].loser = temp2;
+                break;
+            }
+        }
+    }
     return;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
-void lock_pairs(void)
+void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen besen
 {
-    // TODO
+    int sources[candidate_count];
+
+    for(int i = 0; i <  candidate_count; i++)
+    {
+        sources[i] = i;
+    }
+
+    for(int i = 0; i < pair_count; i++)
+    {
+        int is_source = 0;
+        for(int j = 0; j < candidate_count; j++)
+        {
+            if(sources[j] != 99)
+            {
+                is_source++;
+            }
+        }
+
+        if(is_source >= 2)
+        {
+            locked[i][0] = pairs[i].winner;
+            locked[i][1] = pairs[i].loser;
+            for(int j = 0; j < candidate_count; j++)
+            {
+                if(sources[j] == pairs[i].loser)
+                {
+                    sources[j] = 99;
+                }
+            }
+        }
+    }
+    for(int i = 0; i < candidate_count; i++)
+    {
+        if(sources[i] != 99)
+        {
+            winner = sources[i];
+        }
+    }
     return;
 }
 
 // Print the winner of the election
 void print_winner(void)
 {
-    // TODO
+    printf("%d", candidates[winner]);
     return;
 }
