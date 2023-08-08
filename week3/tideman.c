@@ -258,6 +258,6 @@ void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen bes
 // Print the winner of the election
 void print_winner(void)
 {
-    printf("%d", candidates[winner]);
+    printf("%s", candidates[winner]);
     return;
 }
