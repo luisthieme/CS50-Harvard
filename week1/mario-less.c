@@ -23,19 +23,24 @@ int main(void)
         {
             printf(" ");
         }
+
         for(int j = 0; j < counter; j++)
         {
             printf("#");
         }
+
         printf("  ");
+
         for(int j = 0; j < counter; j++)
         {
             printf("#");
         }
+
         printf("\n");
         counter++;
         spaces--;
     }
+    
     printf("\n");
 
 }
