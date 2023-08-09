@@ -33,7 +33,6 @@ int main(void)
             cents -= 1;
             coin_counter++;
         }
-        
     }
 
     printf("%d\n", coin_counter);
