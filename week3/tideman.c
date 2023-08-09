@@ -46,11 +46,13 @@ int main(int argc, string argv[])
 
     // Populate array of candidates
     candidate_count = argc - 1;
+
     if (candidate_count > MAX)
     {
         printf("Maximum number of candidates is %i\n", MAX);
         return 2;
     }
+    
     for (int i = 0; i < candidate_count; i++)
     {
         candidates[i] = argv[i + 1];
@@ -103,7 +105,7 @@ bool vote(int rank, string name, int ranks[])
 {
     for(int i = 0; i < candidate_count; i++)
     {
-        if(strcmp(candidates[i], name))
+        if(!strcmp(candidates[i], name))
         {
             ranks[rank] = i;
             return true;
@@ -119,7 +121,7 @@ void record_preferences(int ranks[])
     {
         for(int j = 0; j < candidate_count; j++)
         {
-            if(!(i == j))
+            if(!(ranks[i] == ranks[j]) && i < j)
             {
                 preferences[ranks[i]][ranks[j]]++;
             }
@@ -137,15 +139,16 @@ void add_pairs(void)
         for(int j = i; j < candidate_count - 1; j++)
         {
             score = preferences[i][j + 1] - preferences[j + 1][i];
+
             if(score > 0)
             {
                 pairs[pair_count].winner = i; 
-                pairs[pair_count].loser = j;
+                pairs[pair_count].loser = j + 1;
                 pair_count++;
             }
             else if(score < 0)
             {
-                pairs[pair_count].winner = j;
+                pairs[pair_count].winner = j +1;
                 pairs[pair_count].loser = i;
                 pair_count++;
             }
@@ -224,6 +227,7 @@ void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen bes
     for(int i = 0; i < pair_count; i++)
     {
         int is_source = 0;
+
         for(int j = 0; j < candidate_count; j++)
         {
             if(sources[j] != 99)
@@ -234,6 +238,7 @@ void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen bes
 
         if(is_source >= 2)
         {
+            // pairs[i].loser bekommt ein falsches value es sollte 2 oder 1 bekommen bekommt aber den index 0 
             locked[i][0] = pairs[i].winner;
             locked[i][1] = pairs[i].loser;
             for(int j = 0; j < candidate_count; j++)
@@ -245,11 +250,16 @@ void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen bes
             }
         }
     }
+
     for(int i = 0; i < candidate_count; i++)
     {
         if(sources[i] != 99)
         {
             winner = sources[i];
+        }
+        else
+        {
+            printf("%d\n", sources[i]);
         }
     }
     return;
@@ -258,6 +268,6 @@ void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen bes
 // Print the winner of the election
 void print_winner(void)
 {
-    printf("%s", candidates[winner]);
+    printf("%s\n", candidates[winner]);
     return;
 }
