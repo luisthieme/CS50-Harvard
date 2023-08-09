@@ -17,6 +17,7 @@ int main(void)
         {
             putchar((text[i] & (1 << j)) ? '1' : '0' );
         }
+
         putchar('\n');
     }
 }
