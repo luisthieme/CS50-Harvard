@@ -39,6 +39,7 @@ int main(void)
                 sum = sum + remainder;
                 t = t / 10;
             }
+
             type2 += sum;
             sum = 0;
         }
@@ -49,8 +50,6 @@ int main(void)
 
     sec_digit_s = input[1];
     sec_digit = atoi(&sec_digit_s);
-
-
 
     if((type1 + type2) % 10 != 0)
     {
