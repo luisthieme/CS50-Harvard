@@ -18,31 +18,30 @@ int main(void)
     for(int i = 0; i < lenght; i++)
     {
         char x = text[i];
-        if(x == ' ')
+
+        switch(x)
         {
-            words++;
-        }
-        else if(x == '.')
-        {
-            sentences++;
-        }
-        else if(x == '!')
-        {
-            sentences++;
-        }
-        else if(x == '?')
-        {
-            sentences++;
-        }
-        else if(x == '\'')
-        {}
-        else if(x == '\"')
-        {}
-        else
-        {
-            letters++;
+            case ' ':
+                words++;
+                break;
+            case '.':
+                sentences++;
+                break;
+            case '!':
+                sentences++;
+                break;
+            case '?':
+                sentences++;
+                break;
+            case '\'':
+                break;
+            case '\"':
+                break;
+            default:
+                letters++;
         }
     }
+
     printf("words: %f letters: %f sentences: %f\n", words, letters, sentences);
 
     double l = letters / (words / 100);
@@ -51,6 +50,7 @@ int main(void)
     printf("%f %f\n", l, s);
 
     int index = round(0.0588 * l - 0.296 * s - 15.8);
+    
     if(index < 1)
     {
         printf("Before Grade 1\n");
