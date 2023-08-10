@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    int duplicate;
+    bool duplicate;
     for (int i = 0; i < strlen(conversion_key) - 1; i++) 
     {
         for (int j = i + 1; j < strlen(conversion_key); j++) 
