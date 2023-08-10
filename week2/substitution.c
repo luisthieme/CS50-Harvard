@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 int main(int argc, char* argv[]) 
 {
@@ -9,49 +10,43 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    char* input = argv[1];
-    char key[200];
+    char* input_as_ascii_code = argv[1];
+    char conversion_key[200];
 
-    for(int i = 0; i < strlen(input); i++)
+    for(int char_slot = 0; char_slot < strlen(input_as_ascii_code); char_slot++)
     {
-        int input_i = input[i];
-        if(input_i < 91 || input_i < 64)
+        int input_i = input_as_ascii_code[char_slot];
+        bool isUppercase = input_i < 91 || input_i > 64;
+        if(isUppercase)
         {
             input_i += 32;
-            key[i] = input_i;
-
+            conversion_key[char_slot] = input_i;
         }
         else
         {
-            key[i] = input_i;
+            conversion_key[char_slot] = input_i;
         }
     }
 
-    if(strlen(key)!= 26)
+    if(strlen(conversion_key)!= 26)
     {
         printf("please enter excactly 26 letters!\n");
         return 1;
     }
-    
-    for(int i = 0; i < strlen(key); i++)
-    {
-
-    }
-
 
     int duplicate;
-    for (int i = 0; i < strlen(key) - 1; i++) 
+    for (int i = 0; i < strlen(conversion_key) - 1; i++) 
     {
-        for (int j = i + 1; j < strlen(key); j++) 
+        for (int j = i + 1; j < strlen(conversion_key); j++) 
         {
-            if (key[i] == key[j]) 
-            {
-                
-                duplicate = 1;
+            if (conversion_key[i] == conversion_key[j]) 
+            { 
+                duplicate = true;
             }
         }
     }
-    if(duplicate == 1)
+
+    if(duplicate)
     {
         printf("please only enter unique letters!\n");
         return 1;
@@ -59,17 +54,18 @@ int main(int argc, char* argv[])
 
     int nonletters;
 
-    for(int i = 0; i < strlen(key); i++)
+    for(int char_in_key = 0; char_in_key < strlen(conversion_key); char_in_key++)
     {
-        if(key[i] < 33 || key[i] > 90 || (key[i] > 58 && key[i] < 65))
+        if(conversion_key[char_in_key] < 33 || conversion_key[char_in_key] > 90 || (conversion_key[char_in_key] > 58 && conversion_key[char_in_key] < 65))
         {
-            nonletters = 1;
+            nonletters = true;
         }
     }
 
-    if(nonletters == 1)
+    if(nonletters)
     {
         printf("please enter only alphabetic characters!\n");
+
         return 1;
     }
 
@@ -78,7 +74,7 @@ int main(int argc, char* argv[])
     printf("plaintext:  ");
     scanf("%[^\n]%*c", text);
 
-    char cipher[50];
+    char ciphertext[50];
 
     for(int i = 0; i < strlen(text); i++)
     {
@@ -86,22 +82,22 @@ int main(int argc, char* argv[])
         {
             int temp = text[i];
             temp -= 97;
-            cipher[i] = key[temp];
+            ciphertext[i] = conversion_key[temp];
         }
         else if(text[i] > 64 && text[i] < 91)
         {
             int temp = text[i];
             temp -= 65;
-            int x = key[temp];
+            int x = conversion_key[temp];
             x -= 32;
-            cipher[i] = x;
+            ciphertext[i] = x;
         }
         else
         {
-            cipher[i] = text[i];
+            ciphertext[i] = text[i];
         }
     }
     
     printf("ciphertext: ");
-    printf("%s\n", cipher);
+    printf("%s\n", ciphertext);
 }
