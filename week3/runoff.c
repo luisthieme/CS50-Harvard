@@ -122,6 +122,7 @@ int main(int argc, string argv[])
             candidates[i].votes = 0;
         }
     }
+
     return 0;
 }
 
@@ -170,9 +171,11 @@ bool print_winner(void)
         if(candidates[i].votes > (voter_count / 2))
         {
             printf("%s\n", candidates[i].name);
+
             return true;
         }
     }
+
     return false;
 }
 
@@ -187,6 +190,7 @@ int find_min(void)
             min_votes = candidates[i].votes;
         }
     }
+
     return min_votes;
 }
 
@@ -217,5 +221,6 @@ void eliminate(int min)
             candidates[i].eliminated = true;
         }
     }
+    
     return;
 }
