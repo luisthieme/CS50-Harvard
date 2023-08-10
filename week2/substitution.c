@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    int nonletters;
+    bool nonletters;
 
     for(int char_in_key = 0; char_in_key < strlen(conversion_key); char_in_key++)
     {
@@ -80,15 +80,15 @@ int main(int argc, char* argv[])
     {
         if(text[i] > 96 && text[i] < 123)
         {
-            int temp = text[i];
-            temp -= 97;
-            ciphertext[i] = conversion_key[temp];
+            int temp_value = text[i];
+            temp_value -= 97;
+            ciphertext[i] = conversion_key[temp_value];
         }
         else if(text[i] > 64 && text[i] < 91)
         {
-            int temp = text[i];
-            temp -= 65;
-            int x = conversion_key[temp];
+            int temp_value = text[i];
+            temp_value -= 65;
+            int x = conversion_key[temp_value];
             x -= 32;
             ciphertext[i] = x;
         }
