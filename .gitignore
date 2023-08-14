@@ -10,3 +10,10 @@ Makefile
 speller
 speller.o
 speller50
+out.bmp
+filter.c
+bmp.h
+filter
+images
+filter.dSYM
+helpers.h
