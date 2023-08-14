@@ -4,3 +4,9 @@
 texts
 keys
 dictionaries
+dictionary.h
+dictionary.o
+Makefile
+speller
+speller.o
+speller50
