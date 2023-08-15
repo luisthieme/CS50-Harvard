@@ -11,4 +11,4 @@ for x in range(input):
     for y in range(x + 1):
         print("#", end="")
     print()
-    
+ 
