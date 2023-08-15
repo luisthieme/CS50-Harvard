@@ -31,8 +31,6 @@ def main():
     if not found:
         print("No match")
         sys.exit(0)
-        
-
 
 
 def longest_match(sequence, subsequence):

@@ -1,4 +1,3 @@
-
 while True:
     try:
         input = int(input("number or rows: "))

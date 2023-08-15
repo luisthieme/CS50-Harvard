@@ -35,6 +35,4 @@ def get_provider(card_number):
     else:
         print("MASTERCARD")
 
-main()    
-
-    
+main()

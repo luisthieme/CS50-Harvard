@@ -26,6 +26,3 @@ while change_owed > 0:
         change_owed -= 0.01
 
 print(counter)
-        
-
-        
