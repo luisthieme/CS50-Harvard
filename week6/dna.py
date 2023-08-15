@@ -24,12 +24,14 @@ def main():
         if row[1:] == sample_data:
             print(row[0])
             found = True
+            csvfile.close()
             sys.exit(0)
         else:
             pass
 
     if not found:
         print("No match")
+        csvfile.close()
         sys.exit(0)
 
 
