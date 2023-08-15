@@ -15,7 +15,7 @@ for charakter in text:
 
 L = (letters / words) * 100
 S = (sentences / words) * 100
-grade = 0.0588 * L - 0.296 * S - 15.8
+grade = round(0.0588 * L - 0.296 * S - 15.8)
 
 if grade < 1:
     print("Before Greade 1")
