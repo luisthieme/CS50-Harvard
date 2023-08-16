@@ -11,15 +11,15 @@ int main(void)
     float letters = 0, sentences = 0, words = 1;
 
     printf("Enter Text: ");
-    scanf("%[^\n]%*c", text); // in c kann man mit der scanf funktion alleine nur einen string input annehmen bis zum ersten leerzeichen. um das zu umgehen muss man statt %s als placeholder %[^\n]%*c benutzen.
+    scanf("%[^\n]%*c", text); 
 
     int lenght = strlen(text);
 
-    for(int i = 0; i < lenght; i++)
+    for(int counter = 0; counter < lenght; counter++)
     {
-        char x = text[i];
+        char current_char = text[counter];
 
-        switch(x)
+        switch(current_char)
         {
             case ' ':
                 words++;
