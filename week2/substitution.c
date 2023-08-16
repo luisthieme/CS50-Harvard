@@ -15,16 +15,16 @@ int main(int argc, char* argv[])
 
     for(int char_slot = 0; char_slot < strlen(input_as_ascii_code); char_slot++)
     {
-        int input_i = input_as_ascii_code[char_slot];
-        bool isUppercase = input_i < 91 || input_i > 64;
+        int input_as_int = input_as_ascii_code[char_slot];
+        bool isUppercase = input_as_int < 91 || input_as_int > 64;
         if(isUppercase)
         {
-            input_i += 32;
-            conversion_key[char_slot] = input_i;
+            input_as_int += 32;
+            conversion_key[char_slot] = input_as_int;
         }
         else
         {
-            conversion_key[char_slot] = input_i;
+            conversion_key[char_slot] = input_as_int;
         }
     }
 
@@ -35,11 +35,11 @@ int main(int argc, char* argv[])
     }
 
     bool duplicate;
-    for (int i = 0; i < strlen(conversion_key) - 1; i++) 
+    for (int counter = 0; counter < strlen(conversion_key) - 1; counter++) 
     {
-        for (int j = i + 1; j < strlen(conversion_key); j++) 
+        for (int inner_counter = counter + 1; inner_counter < strlen(conversion_key); inner_counter++) 
         {
-            if (conversion_key[i] == conversion_key[j]) 
+            if (conversion_key[counter] == conversion_key[inner_counter]) 
             { 
                 duplicate = true;
             }
@@ -76,25 +76,25 @@ int main(int argc, char* argv[])
 
     char ciphertext[50];
 
-    for(int i = 0; i < strlen(text); i++)
+    for(int counter = 0; counter < strlen(text); counter++)
     {
-        if(text[i] > 96 && text[i] < 123)
+        if(text[counter] > 96 && text[counter] < 123)
         {
-            int temp_value = text[i];
+            int temp_value = text[counter];
             temp_value -= 97;
-            ciphertext[i] = conversion_key[temp_value];
+            ciphertext[counter] = conversion_key[temp_value];
         }
-        else if(text[i] > 64 && text[i] < 91)
+        else if(text[counter] > 64 && text[counter] < 91)
         {
-            int temp_value = text[i];
+            int temp_value = text[counter];
             temp_value -= 65;
-            int x = conversion_key[temp_value];
-            x -= 32;
-            ciphertext[i] = x;
+            int current_char = conversion_key[temp_value];
+            current_char -= 32;
+            ciphertext[counter] = current_char;
         }
         else
         {
-            ciphertext[i] = text[i];
+            ciphertext[counter] = text[counter];
         }
     }
     
