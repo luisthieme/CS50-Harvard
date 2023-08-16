@@ -35,21 +35,21 @@ int main(int argc, string argv[])
         return 2;
     }
 
-    for (int i = 0; i < candidate_count; i++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        candidates[i].name = argv[i + 1];
-        candidates[i].votes = 0;
+        candidates[counter].name = argv[counter + 1];
+        candidates[counter].votes = 0;
     }
 
     int voter_count = get_int("Number of voters: ");
 
-    for (int i = 0; i < voter_count; i++)
+    for (int counter = 0; counter < voter_count; counter++)
     {
         string name = get_string("Vote: ");
 
         if (!vote(name))
         {
-            i--;
+            counter--;
             printf("Invalid vote.\n");
         }
     }
@@ -59,11 +59,11 @@ int main(int argc, string argv[])
 
 bool vote(string name)
 {
-    for(int i = 0; i < candidate_count; i++)
+    for(int counter = 0; counter < candidate_count; counter++)
     {
-        if(strcmp(name, candidates[i].name) == 0)
+        if(strcmp(name, candidates[counter].name) == 0)
         {
-            candidates[i].votes += 1;
+            candidates[counter].votes += 1;
 
             return true;
         }
@@ -77,19 +77,19 @@ void print_winner(void)
 {
     int max_votes = 0;
 
-    for(int i = 0; i < candidate_count - 1; i++)
+    for(int counter = 0; counter < candidate_count - 1; counter++)
     {
-        if(candidates[i].votes > max_votes)
+        if(candidates[counter].votes > max_votes)
         {
-            max_votes = candidates[i].votes;
+            max_votes = candidates[counter].votes;
         }
     }
 
-    for(int i = 0; i < candidate_count; i++)
+    for(int counter = 0; counter < candidate_count; counter++)
     {
-        if(candidates[i].votes == max_votes)
+        if(candidates[counter].votes == max_votes)
         {
-            printf("%s\n", candidates[i].name);
+            printf("%s\n", candidates[counter].name);
         }
     }
     
