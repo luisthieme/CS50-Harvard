@@ -44,12 +44,12 @@ int main(void)
 
     printf("words: %f letters: %f sentences: %f\n", words, letters, sentences);
 
-    double l = letters / (words / 100);
-    double s = sentences / (words / 100);
+    double letters_per_100_words = letters / (words / 100);
+    double sentences_per_100_words = sentences / (words / 100);
 
-    printf("%f %f\n", l, s);
+    printf("%f %f\n", letters_per_100_words, sentences_per_100_words);
 
-    int index = round(0.0588 * l - 0.296 * s - 15.8);
+    int index = round(0.0588 * letters_per_100_words - 0.296 * sentences_per_100_words - 15.8);
     
     if(index < 1)
     {
