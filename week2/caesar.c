@@ -32,11 +32,11 @@ int main(int argc, char* argv[])
 
     int lenght = strlen(text);
 
-    for(int i = 0; i < lenght; i++)
+    for(int counter = 0; counter < lenght; counter++)
     {
-        if((text[i] != (' ' | '.' | '?' | '!' | '\'')) && (text[i] > 96) && (text[i] < 123))
+        if((text[counter] != (' ' | '.' | '?' | '!' | '\'')) && (text[counter] > 96) && (text[counter] < 123))
         {
-            ascii = text[i];
+            ascii = text[counter];
             ascii += key;
             if(ascii > 122)
             {
@@ -45,9 +45,9 @@ int main(int argc, char* argv[])
 
             printf("%c", ascii);
         }
-        else if((text[i] != (' ' | '.' | '?' | '!' | '\'')) && (text[i] > 64) && (text[i] < 91))
+        else if((text[counter] != (' ' | '.' | '?' | '!' | '\'')) && (text[counter] > 64) && (text[counter] < 91))
         {
-            ascii = text[i];
+            ascii = text[counter];
             ascii += key;
             if(ascii > 90)
             {
@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
         }
         else
         {
-            printf("%c", text[i]);
+            printf("%c", text[counter]);
         }
     }
 
