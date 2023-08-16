@@ -8,7 +8,7 @@ int main(void)
 {
     char input[50];
     int cardnumber;
-    char input_c;
+    char input_as_char;
     int type1 = 0;
     int type2 = 0;
     int t = 0, remainder = 0, sum = 0, first_digit = 0, sec_digit = 0;
@@ -25,8 +25,8 @@ int main(void)
     for(int i = 0; i < strlen(input); i++)
     {
         int temp = (strlen(input) - 1 - i);
-        input_c = input[temp];
-        int current_num = atoi(&input_c);
+        input_as_char = input[temp];
+        int current_num = atoi(&input_as_char);
         if(i % 2 == 0)
         {
             type1 += current_num;
