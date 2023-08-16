@@ -7,13 +7,13 @@ int main(void)
     int n;
     char input[50];
     int counter = 1;
+
     do
     {
         printf("size: ");
         scanf("%s", input);
         n = atoi(input);
     } while (!(n > 0 && n < 9));
-    
     
     int spaces = n;
 
@@ -42,5 +42,4 @@ int main(void)
     }
     
     printf("\n");
-
 }

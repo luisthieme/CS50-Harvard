@@ -30,7 +30,8 @@ int main(void)
         if(i % 2 == 0)
         {
             type1 += current_num;
-        }else
+        }
+        else
         {
             t = current_num * 2;
             while(t != 0)
@@ -71,5 +72,4 @@ int main(void)
     {
         printf("MASTERCARD\n");
     }
-    
 }
