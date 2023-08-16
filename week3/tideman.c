@@ -2,17 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 
-// Max number of candidates
 #define MAX 9
 
-// preferences[i][j] is number of voters who prefer i over j
 int preferences[MAX][MAX];
-
-// locked[i][j] means i is locked in over j
 bool locked[MAX][MAX];
 int winner;
 
-// Each pair has a winner, loser
 typedef struct
 {
     int winner;
@@ -20,14 +15,12 @@ typedef struct
 }
 pair;
 
-// Array of candidates
 string candidates[MAX];
 pair pairs[MAX * (MAX - 1) / 2];
 
 int pair_count;
 int candidate_count;
 
-// Function prototypes
 bool vote(int rank, string name, int ranks[]);
 void record_preferences(int ranks[]);
 void add_pairs(void);
@@ -37,10 +30,10 @@ void print_winner(void);
 
 int main(int argc, string argv[])
 {
-    // Check for invalid usage
     if (argc < 2)
     {
         printf("Usage: tideman [candidate ...]\n");
+
         return 1;
     }
 
@@ -50,6 +43,7 @@ int main(int argc, string argv[])
     if (candidate_count > MAX)
     {
         printf("Maximum number of candidates is %i\n", MAX);
+
         return 2;
     }
     
@@ -89,7 +83,6 @@ int main(int argc, string argv[])
         }
 
         record_preferences(ranks);
-
         printf("\n");
     }
 
@@ -97,6 +90,7 @@ int main(int argc, string argv[])
     sort_pairs();
     lock_pairs();
     print_winner();
+
     return 0;
 }
 
@@ -111,6 +105,7 @@ bool vote(int rank, string name, int ranks[])
             return true;
         }
     }
+
     return false;
 }
 
@@ -127,6 +122,7 @@ void record_preferences(int ranks[])
             }
         }
     }
+
     return;
 }
 
@@ -154,6 +150,7 @@ void add_pairs(void)
             }
         }
     }
+
     return;
 }
 
@@ -211,6 +208,7 @@ void sort_pairs(void)
             }
         }
     }
+
     return;
 }
 
@@ -262,6 +260,7 @@ void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen bes
             printf("%d\n", sources[counter]);
         }
     }
+
     return;
 }
 
@@ -269,5 +268,6 @@ void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen bes
 void print_winner(void)
 {
     printf("%s\n", candidates[winner]);
+
     return;
 }
