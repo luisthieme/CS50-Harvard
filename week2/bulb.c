@@ -11,11 +11,11 @@ int main(void)
 
     int lenght = strlen(text);
 
-    for(int i = 0; i < lenght; i++)
+    for(int counter = 0; counter < lenght; counter++)
     {
-        for (int j = 7; j >= 0; --j)
+        for (int inner_counter = 7; inner_counter >= 0; --inner_counter)
         {
-            putchar((text[i] & (1 << j)) ? '1' : '0' );
+            putchar((text[counter] & (1 << inner_counter)) ? '1' : '0' );
         }
 
         putchar('\n');
