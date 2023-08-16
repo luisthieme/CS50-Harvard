@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    int n;
+    int input_as_number;
     char input[50];
     int counter = 1;
 
@@ -12,26 +12,26 @@ int main(void)
     {
         printf("size: ");
         scanf("%s", input);
-        n = atoi(input);
-    } while (!(n > 0 && n < 9));
+        input_as_number = atoi(input);
+    } while (!(input_as_number > 0 && input_as_number < 9));
     
-    int spaces = n;
+    int spaces = input_as_number;
 
-    for(int i = 0; i < n; i++)
+    for(int counter = 0; counter < input_as_number; counter++)
     {
-        for(int k = 0; k < spaces; k++)
+        for(int inner_counter = 0; inner_counter < spaces; inner_counter++)
         {
             printf(" ");
         }
 
-        for(int j = 0; j < counter; j++)
+        for(int inner_counter = 0; inner_counter < counter; inner_counter++)
         {
             printf("#");
         }
 
         printf("  ");
 
-        for(int j = 0; j < counter; j++)
+        for(int inner_counter = 0; inner_counter < counter; inner_counter++)
         {
             printf("#");
         }
