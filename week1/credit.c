@@ -9,10 +9,10 @@ int main(void)
     char input[50];
     int cardnumber;
     char input_as_char;
-    int type1 = 0;
-    int type2 = 0;
-    int t = 0, remainder = 0, sum = 0, first_digit = 0, sec_digit = 0;
-    char first_digit_s, sec_digit_s;
+    int type1_numbers = 0;
+    int type2_numbers = 0;
+    int temp = 0, remainder = 0, sum = 0, first_digit = 0, sec_digit = 0;
+    char first_digit_as_char, sec_digit_as_char;
 
     do
     {
@@ -29,30 +29,30 @@ int main(void)
         int current_num = atoi(&input_as_char);
         if(i % 2 == 0)
         {
-            type1 += current_num;
+            type1_numbers += current_num;
         }
         else
         {
-            t = current_num * 2;
-            while(t != 0)
+            temp = current_num * 2;
+            while(temp != 0)
             {
-                remainder = t % 10;
+                remainder = temp % 10;
                 sum = sum + remainder;
-                t = t / 10;
+                temp = temp / 10;
             }
 
-            type2 += sum;
+            type2_numbers += sum;
             sum = 0;
         }
     }
 
-    first_digit_s = input[0];
-    first_digit = atoi(&first_digit_s);
+    first_digit_as_char = input[0];
+    first_digit = atoi(&first_digit_as_char);
 
-    sec_digit_s = input[1];
-    sec_digit = atoi(&sec_digit_s);
+    sec_digit_as_char = input[1];
+    sec_digit = atoi(&sec_digit_as_char);
 
-    if((type1 + type2) % 10 != 0)
+    if((type1_numbers + type2_numbers) % 10 != 0)
     {
         printf("INVALID CARD NUMBER\n");
     }   
