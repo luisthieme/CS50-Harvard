@@ -45,9 +45,9 @@ int main(int argc, string argv[])
 
     char options[LISTSIZE][wordsize + 1];
 
-    for (int i = 0; i < LISTSIZE; i++)
+    for (int counter = 0; counter < LISTSIZE; counter++)
     {
-        fscanf(wordlist, "%s", options[i]);
+        fscanf(wordlist, "%s", options[counter]);
     }
 
     srand(time(NULL));
@@ -59,19 +59,19 @@ int main(int argc, string argv[])
     printf(GREEN"This is WORDLE50"RESET"\n");
     printf("You have %i tries to guess the %i-letter word I'm thinking of\n", guesses, wordsize);
 
-    for (int i = 0; i < guesses; i++)
+    for (int counter = 0; counter < guesses; counter++)
     {
         string guess = get_guess(wordsize);
         int status[wordsize];
 
-        for(int i = 0; i < wordsize; i++)
+        for(int counter = 0; counter < wordsize; counter++)
         {
-            status[i] = 0;
+            status[counter] = 0;
         }
 
         int score = check_word(guess, wordsize, status, choice);
 
-        printf("Guess %i: ", i + 1);
+        printf("Guess %i: ", counter + 1);
         print_word(guess, wordsize, status);
 
         if (score == EXACT * wordsize)
@@ -109,26 +109,26 @@ int check_word(string guess, int wordsize, int status[], string choice)
 {
     int score = 0;
 
-    for(int i = 0; i < wordsize; i++)
+    for(int counter = 0; counter < wordsize; counter++)
     {  
-        for(int j = 0; j < wordsize; j++)
+        for(int inner_counter = 0; inner_counter < wordsize; inner_counter++)
         {
-            if(guess[i] == choice[i])
+            if(guess[counter] == choice[counter])
             {
-                status[i] = EXACT;
+                status[counter] = EXACT;
                 break;
             }
-            if(guess[i] == choice[j])
+            if(guess[counter] == choice[inner_counter])
             {
-                status[i] = CLOSE;
+                status[counter] = CLOSE;
 
             }
         }
     }
 
-    for(int i = 0; i < wordsize; i++)
+    for(int counter = 0; counter < wordsize; counter++)
     {
-        score += status[i];
+        score += status[counter];
     }
 
     return score;
@@ -136,19 +136,19 @@ int check_word(string guess, int wordsize, int status[], string choice)
 
 void print_word(string guess, int wordsize, int status[])
 {
-    for(int i = 0; i < wordsize; i++)
+    for(int counter = 0; counter < wordsize; counter++)
     {
-        if(status[i] == 2)
+        if(status[counter] == 2)
         {
-            printf(GREEN"%c"RESET, guess[i]);
+            printf(GREEN"%c"RESET, guess[counter]);
         }
-        else if(status[i] == 1)
+        else if(status[counter] == 1)
         {
-            printf(YELLOW"%c"RESET, guess[i]);
+            printf(YELLOW"%c"RESET, guess[counter]);
         }
         else
         {
-            printf(RED"%c"RESET, guess[i]);
+            printf(RED"%c"RESET, guess[counter]);
         }
     }
 
