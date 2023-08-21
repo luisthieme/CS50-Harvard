@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="styles-webpage.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+        <script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+        <title>Luis Thieme</title>
+    </head>
+    <body>
+        <header>
+            <h1 class="header-h1">LUIS THIEME</h1>
+            <a class="header-links" href="career.html">CAREER</a>
+            <a class="header-links" href="about.html">ABOUT</a>
+            <a class="header-links" href="sports.html">SPORTS</a>
+            <a class="header-links" href="socials.html">SOCIALS</a>
+        </header>
+        <hr>
+        <main class="index-main">
+            <div>
+                <img class="image-luis-thieme-01" src="../images/Thieme_Luis_Rev01.jpg" alt="Luis Thieme">
+            </div>
+            <p class="welcome-text-luis-thieme">
+                Hi and welcome to my personal Homepage! My name is Luis Thieme. 
+                If you want to know more about me, my career or my life in general,
+                feel free to look around this website or follow my <a class="general-links" href="socials.html">socials</a>.
+            </p>
+        </main>
+        <hr>
+        <h2>COMMENTS</h2>
+        <div class="comment-section-index" id="commentSectionIndex">
+            
+
+        </div>
+        <hr>
+        <div class="comment-writing-section-index">
+            <h2>LEAVE A COMMENT!</h2>
+            <form id="comment-form">
+                <div class="comment-textarea-container">
+                    <textarea class="comment-text" id="comment-text" cols="55" rows="10" placeholder=""></textarea>
+                </div>
+               
+                <div class="container-submit-button-index">
+                    <button id="button" type="submit" onclick="submitComment()">
+                        <p id="buttonText">Submit</p>
+                        <div class="check-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                                <path fill="transparent" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <script type="module" src="main.js"></script>
+    </body>
+</html>

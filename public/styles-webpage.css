@@ -1,0 +1,271 @@
+/* 
+Color Pallet
+#353535
+#FFFFFF
+#BDBBB0
+#8A897C
+*/
+
+
+body {
+    margin: 0;
+    text-align: center;
+    background-color: #353535;
+    color: white;
+    letter-spacing: 4px;
+    font-size: 30px;
+    font-family: 'Roboto Mono', monospace;;
+}
+
+.career-end-text {
+    font-size: 2px;
+    width: 750px;
+}
+
+.end-subsection {
+    margin-top: 75px;
+}
+
+header {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+main {
+    padding: 1rem;
+    margin-bottom: 200px;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    margin-top: 0;
+}
+
+.header-h1 {
+    margin-bottom: 20px;
+    font: 600;
+}
+
+.header-links {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 10px;
+    color: #8A897C;
+    border-radius: 0.25em;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.35s ease;
+    
+}
+
+.header-links:hover {
+    color: #BDBBB0;
+    background-color: rgb(42, 41, 41);
+}
+
+.image-luis-thieme-01 {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    max-width: 500px;
+    max-height: 500px;
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 0.75em;
+    object-fit: cover;
+}
+
+.index-main {
+    display: block;
+    text-align: center;
+}
+
+.welcome-text-luis-thieme {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1150px;
+    align-self: center;
+    justify-content: center;
+}
+
+.general-links {
+    display: inline-block;
+    position: relative;
+    color: #00A6FB;
+    transition: all 0.3s ease;
+}
+
+.general-links::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #00A6FB;
+    transform: scaleX(0);
+    transform-origin: bottom center;
+    transition: transform 0.3s ease; 
+}
+
+.general-links:hover::after {
+    transform: scaleX(1);
+}
+
+.footer-link {
+    font-size: 2;
+}
+
+.icons-on-career-page {
+    width: 100px;
+    height: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: white;
+    border-radius: 0.5em;
+    padding:  5px;
+}
+
+
+
+.content-of-subsubsection {
+    font-size: 20px;
+    max-width: 1200px;
+    margin: 0 auto 0 auto
+
+}
+
+.subsubsection {
+    display: block;
+    text-align: center;
+    margin-bottom: 75px;
+
+}
+
+.socials-main {
+    display: block;
+}
+.socials-text {
+    font-size: 25px;
+    max-width: 1150px;
+    text-align: center;
+    margin: 0 auto 0 auto
+}
+
+.comment-text {
+    background-color: whitesmoke;
+    border-radius: 1em;
+    border: none;
+    border-width: 10px;
+    color: black;
+    font-size: larger;
+    font-weight: bold;
+    padding: 20px;
+    resize: none;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.comment-text:focus {
+    outline: none;
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 1);
+}
+
+.comment-textarea-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-submit-button-index {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    width: 270px;
+    height: 80px;
+    border: none;
+    outline: none;
+    background: black;
+    color: #fff;
+    font-size: 22px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.check-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    box-shadow: 0 0 12px -2px rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    right: -40px;
+    opacity: 0;
+}
+
+.check-box svg {
+    width: 40px;
+    margin: 20px;
+}
+
+svg path {
+    stroke-width: 3;
+    stroke: #fff;
+    stroke-dasharray: 34;
+    stroke-dashoffset: 34;
+    stroke-linecap: round;
+}
+
+.active {
+    background: #ff2b75;
+    transition: 1s;
+}
+
+.active .check-box {
+    right: 0;
+    opacity: 1;
+    transition: 1s;
+}
+
+.active p {
+    margin-right: 125px;
+    transition: 1s;
+}
+
+.picture-container-norway {
+    display: block;
+}
+
+.single-picture-container-norway {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.active svg path {
+    stroke-dashoffset: 0;
+    transition: 1s;
+    transition-delay: 1s;
+}
+
+.image-on-norway-webpage {
+    max-width: 100%;
+    max-height: auto;
+}
