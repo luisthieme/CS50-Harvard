@@ -6,7 +6,7 @@ export default function App() {
     {id: 1, linkTitle: 'CAREER', linkSrc: 'career.html'},
     {id: 2, linkTitle: 'ABOUT', linkSrc: 'about.html'},
     {id: 3, linkTitle: 'HOME', linkSrc: 'index.html'},
-    {id: 4, linkTitle: 'SPORT', linkSrc: 'sport.html'},
+    {id: 4, linkTitle: 'GAMES', linkSrc: '/html/games.html'},
     {id: 5, linkTitle: 'SOCIALS', linkSrc: '/html/socials.html'}
   ]
   return (

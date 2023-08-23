@@ -6,6 +6,45 @@ body {
   margin: 0;
 }
 
+.dropDownButton {
+  border-radius: 0.25em;
+  background-color: #353535;
+  border: none;
+  color: #8A897C;
+  cursor: pointer;
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding: 10px;
+  transition: all 0.35s ease;
+  text-align: center;
+}
+
+.dropDownButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.mainContainerSocials {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  .showOnSmallScreen {
+    display: flex;
+  }
+
+  .hideOnSmallScreen {
+    display: none;
+  }
+}
+
 .navBarContainer {
   display: block;
 }
@@ -44,12 +83,10 @@ body {
   flex-wrap: wrap;
 }
 
-@media (max-width: 500px) {
-  .navBarLinksContainer {
-    flex-direction: column;
-  }
+.navBarLinksContainerSmall {
+  margin-left: 30px;
+  margin-right: 30px;
 }
-
 
 .pageTitle {
   display: flex;
@@ -71,4 +108,125 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1.5;
+}
+
+.socialCardContainer {
+  align-items: center;
+  border-style: solid;
+  border-radius: 2.5em;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  transition: all  0.3s ease;
+  width: 400px;
+  margin-top: 60px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.socialCardContainer:hover {
+  box-shadow: 0px 8px 8px 0px rgba(255, 255, 255, 0.2);
+  transform: scaleX(1.02) scaleY(1.02);
+}
+
+@media (max-width: 500px) {
+  .socialCardContainer {
+    height: 200px;
+    width: 200px;
+    margin-top: 20px;
+  }
+}
+
+.socialCardGridContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 1200px
+
+}
+
+.socialCardHeading {
+  font-size: 30px;
+}
+
+@media (max-width: 500px) {
+  .socialCardHeading {
+    font-size: 15px;
+  }
+}
+
+.socialCardImg {
+  width: 200px;
+  height: 200px;
+}
+
+@media (max-width: 500px) {
+  .socialCardImg {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+.socialCardLink {
+  color: #00A6FB;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.socialCardLink:hover {
+  color: #1bd3fd;
+}
+
+@media (max-width: 500px) {
+  .socialCardLink {
+    margin-top: 10px;
+    font-size: 20px
+  }
+}
+
+.ticTacToeButtons {
+  font-size: 200px;
+}
+
+.ticTacToeContainer {
+  align-items: center;
+  border-style: solid;
+  display: flex;
+  height: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 900px;
+}
+
+.ticTacToeGame {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  grid-template-rows: 300px 300px 300px;
+}
+
+@media (max-width: 900px) {
+  .ticTacToeButtons {
+    font-size: 66px;
+  }
+  .ticTacToeContainer {
+    height: 300px;
+    width: 300px;
+  }
+  .ticTacToeGame {
+    grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  }
+}
+
+.ticTacToeHeading {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.ticTacToeWinnerText {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 }

@@ -1,0 +1,91 @@
+import { useState, useEffect } from 'react';
+import '../../css/styles.css'
+
+interface Button {
+    id: number;
+    occupation: string;
+
+}
+
+
+export default function TicTacToeGame() {
+    const [buttons, setButtons] = useState([
+        {id: 1, occupation: ""},
+        {id: 2, occupation: ""},
+        {id: 3, occupation: ""},
+        {id: 4, occupation: ""},
+        {id: 5, occupation: ""},
+        {id: 6, occupation: ""},
+        {id: 7, occupation: ""},
+        {id: 8, occupation: ""},
+        {id: 9, occupation: ""},
+    ]);
+
+    const [playerXIsNext, setPlayerXIsNext] = useState(true);
+    const [winner, setWinner] = useState('');
+
+    function handleButtonClick(button: Button) {
+        if (button.occupation === '') {
+            const newOccupation = playerXIsNext ? 'X' : 'O';
+            const updatedButtons = buttons.map((btn) =>
+                btn.id === button.id ? { ...btn, occupation: newOccupation } : btn
+            );
+
+            setButtons(updatedButtons);
+            setPlayerXIsNext(!playerXIsNext);
+        }
+    }
+
+    useEffect(() => {
+        if (
+            (buttons[0].occupation === 'X' && buttons[1].occupation === 'X' && buttons[2].occupation === 'X') ||
+            (buttons[3].occupation === 'X' && buttons[4].occupation === 'X' && buttons[5].occupation === 'X') ||
+            (buttons[6].occupation === 'X' && buttons[7].occupation === 'X' && buttons[8].occupation === 'X') ||
+            (buttons[0].occupation === 'X' && buttons[3].occupation === 'X' && buttons[6].occupation === 'X') ||
+            (buttons[1].occupation === 'X' && buttons[4].occupation === 'X' && buttons[7].occupation === 'X') ||
+            (buttons[2].occupation === 'X' && buttons[5].occupation === 'X' && buttons[8].occupation === 'X') ||
+            (buttons[0].occupation === 'X' && buttons[4].occupation === 'X' && buttons[8].occupation === 'X') ||
+            (buttons[2].occupation === 'X' && buttons[4].occupation === 'X' && buttons[6].occupation === 'X')
+        ) {
+            setWinner('X');
+            setTimeout(() => {
+                const resetButtons = buttons.map((btn) => ({ ...btn, occupation: '' }));
+                setButtons(resetButtons);
+                setWinner('');
+            }, 1500);
+        } else if (
+            (buttons[0].occupation === 'O' && buttons[1].occupation === 'O' && buttons[2].occupation === 'O') ||
+            (buttons[3].occupation === 'O' && buttons[4].occupation === 'O' && buttons[5].occupation === 'O') ||
+            (buttons[6].occupation === 'O' && buttons[7].occupation === 'O' && buttons[8].occupation === 'O') ||
+            (buttons[0].occupation === 'O' && buttons[3].occupation === 'O' && buttons[6].occupation === 'O') ||
+            (buttons[1].occupation === 'O' && buttons[4].occupation === 'O' && buttons[7].occupation === 'O') ||
+            (buttons[2].occupation === 'O' && buttons[5].occupation === 'O' && buttons[8].occupation === 'O') ||
+            (buttons[0].occupation === 'O' && buttons[4].occupation === 'O' && buttons[8].occupation === 'O') ||
+            (buttons[2].occupation === 'O' && buttons[4].occupation === 'O' && buttons[6].occupation === 'O')
+        ) {
+            setWinner('O');
+            setTimeout(() => {
+                const resetButtons = buttons.map((btn) => ({ ...btn, occupation: '' }));
+                setButtons(resetButtons);
+                setWinner('');
+            }, 3500);
+        }
+    }, [buttons]);
+    
+
+
+
+    return (
+        <>
+            <h1 className="ticTacToeHeading">Tic Tac Toe Game</h1>
+            <div className="ticTacToeContainer">
+                <div className="ticTacToeGame">
+                    {buttons.map((button) => (
+                        <button className="ticTacToeButtons" key={ button.id } onClick={() => handleButtonClick(button)}>{ button.occupation }</button>
+                    ))}
+                </div>
+            </div>
+            <h2 className="ticTacToeWinnerText">Winner: { winner }</h2>
+        </>
+    );
+}
