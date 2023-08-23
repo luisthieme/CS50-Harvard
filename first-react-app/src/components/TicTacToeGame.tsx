@@ -52,6 +52,7 @@ export default function TicTacToeGame() {
                 const resetButtons = buttons.map((btn) => ({ ...btn, occupation: '' }));
                 setButtons(resetButtons);
                 setWinner('');
+                setPlayerXIsNext(true);
             }, 1500);
         } else if (
             (buttons[0].occupation === 'O' && buttons[1].occupation === 'O' && buttons[2].occupation === 'O') ||
@@ -68,16 +69,35 @@ export default function TicTacToeGame() {
                 const resetButtons = buttons.map((btn) => ({ ...btn, occupation: '' }));
                 setButtons(resetButtons);
                 setWinner('');
+                setPlayerXIsNext(true);
             }, 3500);
+        }
+        else if (
+            buttons[0].occupation != '' &&
+            buttons[1].occupation != '' &&
+            buttons[2].occupation != '' &&
+            buttons[3].occupation != '' &&
+            buttons[4].occupation != '' &&
+            buttons[5].occupation != '' &&
+            buttons[6].occupation != '' &&
+            buttons[7].occupation != '' &&
+            buttons[8].occupation != ''
+            ) {
+            setWinner('Tie')
         }
     }, [buttons]);
     
-
+    function handleReset() {
+        const resetButtons = buttons.map((btn) => ({ ...btn, occupation: '' }));
+                setButtons(resetButtons);
+                setWinner('');
+                setPlayerXIsNext(true);
+    }
 
 
     return (
         <>
-            <h1 className="ticTacToeHeading">Tic Tac Toe Game</h1>
+            
             <div className="ticTacToeContainer">
                 <div className="ticTacToeGame">
                     {buttons.map((button) => (
@@ -86,6 +106,7 @@ export default function TicTacToeGame() {
                 </div>
             </div>
             <h2 className="ticTacToeWinnerText">Winner: { winner }</h2>
+            <button className="ticTacToeResetButton" onClick={handleReset}>RESET</button>
         </>
     );
 }
