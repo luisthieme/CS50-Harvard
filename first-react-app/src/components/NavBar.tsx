@@ -1,12 +1,19 @@
 import '../../css/styles.css'
 import NavBarLinks from './NavBarLinks';
-import React, { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 interface linkObjekts {
     id: number;
     linkTitle: string;
     linkSrc: string;
 }
+
+interface link {
+    id: number;
+    linkTitle: string;
+    linkSrc: string;
+}
+
 
 interface NavBarProps {
     pageTitle: string;
@@ -33,6 +40,13 @@ export default function NavBar( props: NavBarProps ) {
         setHiddenElementsVisible(!hiddenElementsVisible);
     };
 
+    function handleActive(link: link): boolean { //better way to do this?
+        if(link.linkTitle === props.pageTitle) {
+            return true;
+        }
+        return false;
+    }
+
     return (
         <div className="navBarContainer">
             <div className="navBarTitleContainer">
@@ -43,7 +57,7 @@ export default function NavBar( props: NavBarProps ) {
             </div>
             <div className={`hideOnSmallScreen ${windowWidth < 500 && hiddenElementsVisible ? 'hidden ' : 'navBarLinksContainer navBarLinksContainerSmall'}`}>
                 {props.pageLinks.map(link => (
-                    <NavBarLinks key={link.id} linkTitle={link.linkTitle} linkSrc={link.linkSrc}></NavBarLinks>
+                    <NavBarLinks isActive={handleActive(link)} key={link.id} linkTitle={link.linkTitle} linkSrc={link.linkSrc}></NavBarLinks>
                 ))}
             </div>
             <hr />

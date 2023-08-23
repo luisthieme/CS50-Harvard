@@ -67,14 +67,20 @@ body {
 }
 
 .navBarLinks:hover {
-  color: #BDBBB0;
   background-color: rgb(42, 41, 41);
+  color: #BDBBB0;
 }
 
 @media (max-width: 500px) {
   .navBarLinks {
     margin-bottom: 0px;
   }
+}
+
+.navBarLinkActive {
+  background-color: rgb(42, 41, 41);
+  color: #BDBBB0;
+  font-weight: bold;
 }
 
 .navBarLinksContainer {

@@ -1,5 +1,6 @@
 import NavBar from '../components/NavBar'
 import '../../css/styles.css'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default function App() {
   const pageLinks = [
