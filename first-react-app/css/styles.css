@@ -201,6 +201,7 @@ body {
   height: 900px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   justify-content: center;
   width: 900px;
 }
