@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-//#include <cstdint>
- 
+
 int main(int argc, char *argv[])
 {
-    if(argc < 2 || argc > 2)
+    if (argc < 2 || argc > 2)
     {
         printf("Usage: ./recover [file to recover]\n");
+
         return 1;
     }
 
@@ -18,17 +18,18 @@ int main(int argc, char *argv[])
 
     inputFile = fopen(argv[1], "r");
 
-    if(inputFile == NULL)
+    if (inputFile == NULL)
     {
         printf("Not able to open file.\n");
+
         return 1;
     }
 
-    while(fread(buffer, sizeof(uint8_t) * 512, 1, inputFile) == 1)
+    while (fread(buffer, sizeof(uint8_t) * 512, 1, inputFile) == 1)
     {
-        if(buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff)
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff)
         {
-            if(outputFile != NULL)
+            if (outputFile != NULL)
             {
                 fclose(outputFile);
             }
@@ -38,18 +39,16 @@ int main(int argc, char *argv[])
             outputFile = fopen(argv[1], "w");
         }
 
-        if(outputFile != NULL)
+        if (outputFile != NULL)
         {
             fwrite(buffer, sizeof(uint8_t) * 512, 1, outputFile);
         }
     }
 
-    if(outputFile != NULL)
+    if (outputFile != NULL)
     {
         fclose(outputFile);
     }
 
     fclose(inputFile);
-    
-    
 }
