@@ -116,6 +116,51 @@ body {
   line-height: 1.5;
 }
 
+.searchBarContainer {
+  margin: 30px auto;
+  width: 30%;
+}
+
+.searchBarInput {
+  background-color: #252525;
+  border-color: whitesmoke;
+  border-style: solid;
+  color: white;
+  height: 40px;
+  width: 85%;
+  
+}
+
+.searchBarInput:focus {
+  outline: none;
+}
+
+.searchBarSubmitButton {
+  background-color: black;
+  border-color: whitesmoke;
+  border-style: solid;
+  color: white;
+  height: 40px;
+  width: 15%;
+}
+
+@media (max-width: 500px) {
+  .searchBarContainer {
+    width: 80%;
+  }
+
+  .searchBarInput {
+    width: 70%;
+  }
+
+  .searchBarSubmitButton {
+    width: 30%;
+  }
+}
+
+
+
+
 .socialCardContainer {
   align-items: center;
   border-style: solid;

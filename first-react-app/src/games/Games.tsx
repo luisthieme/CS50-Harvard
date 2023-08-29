@@ -1,4 +1,3 @@
-import React from "react"
 import '../../css/styles.css'
 import NavBar from '../components/NavBar'
 import TicTacToeGame from "../components/TicTacToeGame";
@@ -15,7 +14,7 @@ export default function Games() {
     return (
         <>
             <NavBar pageTitle="GAMES" pageLinks={pageLinks}></NavBar>
-            <TicTacToeGame></TicTacToeGame>
+            <TicTacToeGame />
         </>
     );
 }

@@ -4,9 +4,7 @@ import '../../css/styles.css'
 interface Button {
     id: number;
     occupation: string;
-
 }
-
 
 export default function TicTacToeGame() {
     const [buttons, setButtons] = useState([
@@ -53,7 +51,7 @@ export default function TicTacToeGame() {
                 setButtons(resetButtons);
                 setWinner('');
                 setPlayerXIsNext(true);
-            }, 1500);
+            }, 3500);
         } else if (
             (buttons[0].occupation === 'O' && buttons[1].occupation === 'O' && buttons[2].occupation === 'O') ||
             (buttons[3].occupation === 'O' && buttons[4].occupation === 'O' && buttons[5].occupation === 'O') ||
@@ -94,10 +92,8 @@ export default function TicTacToeGame() {
                 setPlayerXIsNext(true);
     }
 
-
     return (
         <>
-            
             <div className="ticTacToeContainer">
                 <div className="ticTacToeGame">
                     {buttons.map((button) => (

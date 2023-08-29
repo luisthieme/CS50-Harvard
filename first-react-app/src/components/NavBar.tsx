@@ -1,5 +1,6 @@
 import '../../css/styles.css'
 import NavBarLinks from './NavBarLinks';
+import SearchBar from './SearchBar';
 import { useState, useEffect } from 'react';
 
 interface linkObjekts {
@@ -7,13 +8,6 @@ interface linkObjekts {
     linkTitle: string;
     linkSrc: string;
 }
-
-interface link {
-    id: number;
-    linkTitle: string;
-    linkSrc: string;
-}
-
 
 interface NavBarProps {
     pageTitle: string;
@@ -40,17 +34,18 @@ export default function NavBar( props: NavBarProps ) {
         setHiddenElementsVisible(!hiddenElementsVisible);
     };
 
-    function handleActive(link: link): boolean { //better way to do this?
+    function handleActive(link: linkObjekts): boolean {
         if(link.linkTitle === props.pageTitle) {
             return true;
         }
+
         return false;
     }
 
     return (
         <div className="navBarContainer">
             <div className="navBarTitleContainer">
-                <h1 className="pageTitle">{ props.pageTitle }</h1>
+                <SearchBar></SearchBar>
             </div>
             <div className={`showOnSmallScreen ${windowWidth < 500 ? '' : 'hidden'} dropDownButtonContainer`}>
                 <button className="dropDownButton" onClick={toggleHiddenElements}>MENU</button>
