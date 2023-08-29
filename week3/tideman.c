@@ -12,8 +12,7 @@ typedef struct
 {
     int winner;
     int loser;
-}
-pair;
+} pair;
 
 string candidates[MAX];
 pair pairs[MAX * (MAX - 1) / 2];
@@ -46,7 +45,7 @@ int main(int argc, string argv[])
 
         return 2;
     }
-    
+
     for (int counter = 0; counter < candidate_count; counter++)
     {
         candidates[counter] = argv[counter + 1];
@@ -78,6 +77,7 @@ int main(int argc, string argv[])
             if (!vote(inner_counter, name, ranks))
             {
                 printf("Invalid vote.\n");
+
                 return 3;
             }
         }
@@ -97,11 +97,12 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        if(!strcmp(candidates[counter], name))
+        if (!strcmp(candidates[counter], name))
         {
             ranks[rank] = counter;
+
             return true;
         }
     }
@@ -112,13 +113,13 @@ bool vote(int rank, string name, int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int candidate_a = 0; candidate_a < candidate_count; candidate_a++)
     {
-        for(int inner_counter = 0; inner_counter < candidate_count; inner_counter++)
+        for (int candidate_b = 0; candidate_b < candidate_count; candidate_b++)
         {
-            if(!(ranks[counter] == ranks[inner_counter]) && counter < inner_counter)
+            if (!(ranks[candidate_a] == ranks[candidate_b]) && candidate_a < candidate_b)
             {
-                preferences[ranks[counter]][ranks[inner_counter]]++;
+                preferences[ranks[candidate_a]][ranks[candidate_b]]++;
             }
         }
     }
@@ -130,21 +131,21 @@ void record_preferences(int ranks[])
 void add_pairs(void)
 {
     int score = 0;
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        for(int inner_counter = counter; inner_counter < candidate_count - 1; inner_counter++)
+        for (int inner_counter = counter; inner_counter < candidate_count - 1; inner_counter++)
         {
             score = preferences[counter][inner_counter + 1] - preferences[inner_counter + 1][counter];
 
-            if(score > 0)
+            if (score > 0)
             {
-                pairs[pair_count].winner = counter; 
+                pairs[pair_count].winner = counter;
                 pairs[pair_count].loser = inner_counter + 1;
                 pair_count++;
             }
-            else if(score < 0)
+            else if (score < 0)
             {
-                pairs[pair_count].winner = inner_counter +1;
+                pairs[pair_count].winner = inner_counter + 1;
                 pairs[pair_count].loser = counter;
                 pair_count++;
             }
@@ -162,19 +163,19 @@ void sort_pairs(void)
     bool sorted = false;
     int swap_counter;
 
-    for(int counter = 0; counter < pair_count; counter++)
+    for (int counter = 0; counter < pair_count; counter++)
     {
         score = preferences[pairs[counter].winner][pairs[counter].loser] - preferences[pairs[counter].loser][pairs[counter].winner];
         scores[counter] = score;
     }
 
-    while(!sorted)
+    while (!sorted)
     {
         swap_counter = 0;
 
-        for(int counter = 0; counter < pair_count - 1; counter++)
+        for (int counter = 0; counter < pair_count - 1; counter++)
         {
-            if(scores[counter] < scores[counter + 1])
+            if (scores[counter] < scores[counter + 1])
             {
                 int temp1 = scores[counter];
                 int temp2 = scores[counter + 1];
@@ -182,26 +183,26 @@ void sort_pairs(void)
                 scores[counter + 1] = temp1;
                 swap_counter++;
             }
-        } 
+        }
 
-        if(swap_counter == 0)
+        if (swap_counter == 0)
         {
             sorted = true;
         }
     }
-    
-    for(int counter = 0; counter < pair_count; counter++)
+
+    for (int counter = 0; counter < pair_count; counter++)
     {
-        for(int inner_counter = counter; inner_counter < pair_count; inner_counter++)
+        for (int inner_counter = counter; inner_counter < pair_count; inner_counter++)
         {
-            if(scores[counter] == preferences[pairs[inner_counter].winner][pairs[inner_counter].loser] - preferences[pairs[inner_counter].loser][pairs[inner_counter].winner])
+            if (scores[counter] == preferences[pairs[inner_counter].winner][pairs[inner_counter].loser] - preferences[pairs[inner_counter].loser][pairs[inner_counter].winner])
             {
                 int temp1 = pairs[inner_counter].winner;
                 int temp2 = pairs[inner_counter].loser;
-                
+
                 pairs[inner_counter].winner = pairs[counter].winner,
                 pairs[inner_counter].loser = pairs[counter].loser;
-                
+
                 pairs[counter].winner = temp1;
                 pairs[counter].loser = temp2;
                 break;
@@ -213,35 +214,35 @@ void sort_pairs(void)
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
-void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen besen
+void lock_pairs(void) // wenn die funktion richtig funktioniert fress ich nen besen
 {
     int sources[candidate_count];
 
-    for(int counter = 0; counter <  candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
         sources[counter] = counter;
     }
 
-    for(int counter = 0; counter < pair_count; counter++)
+    for (int counter = 0; counter < pair_count; counter++)
     {
         int is_source = 0;
 
-        for(int inner_counter = 0; inner_counter < candidate_count; inner_counter++)
+        for (int inner_counter = 0; inner_counter < candidate_count; inner_counter++)
         {
-            if(sources[inner_counter] != 99)
+            if (sources[inner_counter] != 99)
             {
                 is_source++;
             }
         }
 
-        if(is_source >= 2)
+        if (is_source >= 2)
         {
-            // pairs[i].loser bekommt ein falsches value es sollte 2 oder 1 bekommen bekommt aber den index 0 
+            // pairs[i].loser bekommt ein falsches value es sollte 2 oder 1 bekommen bekommt aber den index 0
             locked[counter][0] = pairs[counter].winner;
             locked[counter][1] = pairs[counter].loser;
-            for(int inner_counter = 0; inner_counter < candidate_count; inner_counter++)
+            for (int inner_counter = 0; inner_counter < candidate_count; inner_counter++)
             {
-                if(sources[inner_counter] == pairs[counter].loser)
+                if (sources[inner_counter] == pairs[counter].loser)
                 {
                     sources[inner_counter] = 99;
                 }
@@ -249,9 +250,9 @@ void lock_pairs(void) //wenn die funktion richtig funktioniert fress ich nen bes
         }
     }
 
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        if(sources[counter] != 99)
+        if (sources[counter] != 99)
         {
             winner = sources[counter];
         }
