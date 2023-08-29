@@ -12,8 +12,7 @@ typedef struct
     string name;
     int votes;
     bool eliminated;
-}
-candidate;
+} candidate;
 
 candidate candidates[MAX_CANDIDATES];
 
@@ -101,7 +100,8 @@ int main(int argc, string argv[])
                     printf("%s\n", candidates[counter].name);
                 }
             }
-            break;
+
+            return 0;
         }
 
         eliminate(min);
@@ -117,9 +117,9 @@ int main(int argc, string argv[])
 
 bool vote(int voter, int rank, string name)
 {
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        if(strcmp(candidates[counter].name, name) == 0)
+        if (strcmp(candidates[counter].name, name) == 0)
         {
             preferences[voter][rank] = counter;
 
@@ -134,13 +134,13 @@ void tabulate(void)
 {
     int favourite;
 
-    for(int counter = 0; counter < voter_count; counter++)
+    for (int counter = 0; counter < voter_count; counter++)
     {
-        for(int inner_counter = 0; inner_counter < candidate_count; inner_counter++)
+        for (int inner_counter = 0; inner_counter < candidate_count; inner_counter++)
         {
             favourite = preferences[counter][inner_counter];
 
-            if(!candidates[favourite].eliminated)
+            if (!candidates[favourite].eliminated)
             {
                 candidates[favourite].votes++;
                 break;
@@ -153,9 +153,9 @@ void tabulate(void)
 
 bool print_winner(void)
 {
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        if(candidates[counter].votes > (voter_count / 2))
+        if (candidates[counter].votes > (voter_count / 2))
         {
             printf("%s\n", candidates[counter].name);
 
@@ -170,9 +170,9 @@ int find_min(void)
 {
     int min_votes = voter_count;
 
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        if(candidates[counter].votes < min_votes && !candidates[counter].eliminated)
+        if (candidates[counter].votes < min_votes && !candidates[counter].eliminated)
         {
             min_votes = candidates[counter].votes;
         }
@@ -183,15 +183,15 @@ int find_min(void)
 
 bool is_tie(int min)
 {
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        if(!candidates[counter].eliminated)
+        if (!candidates[counter].eliminated)
         {
-            if(candidates[counter].votes != min && !candidates[counter].eliminated)
+            if (candidates[counter].votes != min && !candidates[counter].eliminated)
             {
                 return false;
             }
-        }  
+        }
     }
 
     return true;
@@ -199,9 +199,9 @@ bool is_tie(int min)
 
 void eliminate(int min)
 {
-    for(int counter = 0; counter < candidate_count; counter++)
+    for (int counter = 0; counter < candidate_count; counter++)
     {
-        if(candidates[counter].votes == min)
+        if (candidates[counter].votes == min)
         {
             candidates[counter].eliminated = true;
         }
