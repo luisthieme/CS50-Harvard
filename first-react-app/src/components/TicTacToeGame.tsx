@@ -8,19 +8,20 @@ interface Button {
 
 export default function TicTacToeGame() {
     const [buttons, setButtons] = useState([
-        {id: 1, occupation: ""},
-        {id: 2, occupation: ""},
-        {id: 3, occupation: ""},
-        {id: 4, occupation: ""},
-        {id: 5, occupation: ""},
-        {id: 6, occupation: ""},
-        {id: 7, occupation: ""},
-        {id: 8, occupation: ""},
-        {id: 9, occupation: ""},
+        { id: 1, occupation: "" },
+        { id: 2, occupation: "" },
+        { id: 3, occupation: "" },
+        { id: 4, occupation: "" },
+        { id: 5, occupation: "" },
+        { id: 6, occupation: "" },
+        { id: 7, occupation: "" },
+        { id: 8, occupation: "" },
+        { id: 9, occupation: "" },
     ]);
 
     const [playerXIsNext, setPlayerXIsNext] = useState(true);
     const [winner, setWinner] = useState('');
+    const [buttonClickable, setButtonClickable] = useState(true);
 
     function handleButtonClick(button: Button) {
         if (button.occupation === '') {
@@ -46,12 +47,7 @@ export default function TicTacToeGame() {
             (buttons[2].occupation === 'X' && buttons[4].occupation === 'X' && buttons[6].occupation === 'X')
         ) {
             setWinner('X');
-            setTimeout(() => {
-                const resetButtons = buttons.map((btn) => ({ ...btn, occupation: '' }));
-                setButtons(resetButtons);
-                setWinner('');
-                setPlayerXIsNext(true);
-            }, 3500);
+            setButtonClickable(false)
         } else if (
             (buttons[0].occupation === 'O' && buttons[1].occupation === 'O' && buttons[2].occupation === 'O') ||
             (buttons[3].occupation === 'O' && buttons[4].occupation === 'O' && buttons[5].occupation === 'O') ||
@@ -63,12 +59,7 @@ export default function TicTacToeGame() {
             (buttons[2].occupation === 'O' && buttons[4].occupation === 'O' && buttons[6].occupation === 'O')
         ) {
             setWinner('O');
-            setTimeout(() => {
-                const resetButtons = buttons.map((btn) => ({ ...btn, occupation: '' }));
-                setButtons(resetButtons);
-                setWinner('');
-                setPlayerXIsNext(true);
-            }, 3500);
+            setButtonClickable(false)
         }
         else if (
             buttons[0].occupation != '' &&
@@ -80,16 +71,17 @@ export default function TicTacToeGame() {
             buttons[6].occupation != '' &&
             buttons[7].occupation != '' &&
             buttons[8].occupation != ''
-            ) {
+        ) {
             setWinner('Tie')
         }
     }, [buttons]);
-    
+
     function handleReset() {
         const resetButtons = buttons.map((btn) => ({ ...btn, occupation: '' }));
-                setButtons(resetButtons);
-                setWinner('');
-                setPlayerXIsNext(true);
+        setButtons(resetButtons);
+        setWinner('');
+        setPlayerXIsNext(true);
+        setButtonClickable(true)
     }
 
     return (
@@ -97,11 +89,11 @@ export default function TicTacToeGame() {
             <div className="ticTacToeContainer">
                 <div className="ticTacToeGame">
                     {buttons.map((button) => (
-                        <button className="ticTacToeButtons" key={ button.id } onClick={() => handleButtonClick(button)}>{ button.occupation }</button>
+                        <button className={`ticTacToeButtons ${!buttonClickable ? 'preventClick' : ''}`} onClick={() => handleButtonClick(button)}>{button.occupation}</button>
                     ))}
                 </div>
             </div>
-            <h2 className="ticTacToeWinnerText">Winner: { winner }</h2>
+            <h2 className="ticTacToeWinnerText">Winner: {winner}</h2>
             <button className="ticTacToeResetButton" onClick={handleReset}>RESET</button>
         </>
     );
