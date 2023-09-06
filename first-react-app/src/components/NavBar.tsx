@@ -1,4 +1,5 @@
 import '../../css/styles.css'
+import LoginButton from './LoginButton';
 import NavBarLinks from './NavBarLinks';
 import SearchBar from './SearchBar';
 import { useState, useEffect } from 'react';
@@ -14,19 +15,19 @@ interface NavBarProps {
     pageLinks: linkObjekts[];
 }
 
-export default function NavBar( props: NavBarProps ) {
+export default function NavBar(props: NavBarProps) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [hiddenElementsVisible, setHiddenElementsVisible] = useState(true);
 
     useEffect(() => {
         const handleResize = () => {
-        setWindowWidth(window.innerWidth);
+            setWindowWidth(window.innerWidth);
         };
 
         window.addEventListener('resize', handleResize);
 
         return () => {
-        window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -35,7 +36,7 @@ export default function NavBar( props: NavBarProps ) {
     };
 
     function handleActive(link: linkObjekts): boolean {
-        if(link.linkTitle === props.pageTitle) {
+        if (link.linkTitle === props.pageTitle) {
             return true;
         }
 
@@ -45,6 +46,8 @@ export default function NavBar( props: NavBarProps ) {
     return (
         <div className="navBarContainer">
             <div className="navBarTitleContainer">
+                <LoginButton></LoginButton>
+                <h1 className="pageHeading">LUIS THIEME</h1>
                 <SearchBar></SearchBar>
             </div>
             <div className={`showOnSmallScreen ${windowWidth < 500 ? '' : 'hidden'} dropDownButtonContainer`}>
